@@ -21,8 +21,9 @@ if !has('gui_running')
 	set t_Co=256
 endif
 set termguicolors     " enable true colors support
-autocmd vimenter * colorscheme gruvbox 
+autocmd vimenter * colorscheme ayu
 set background=dark   
+let ayucolor="dark"   
 "
 
 
@@ -77,6 +78,9 @@ nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
 noremap <C-p> :GFiles --exclude-standard --others --cached<Cr>
 noremap <leader>b :Buffers<Cr>
 noremap <leader>t :Windows<Cr>
@@ -84,12 +88,12 @@ noremap <leader>t :Windows<Cr>
 noremap <leader>f :Prettier<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 
-nnoremap <leader>w :w<CR>
 
 
 " ------VIM-PLUG ---- plugins
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim' 
 Plug 'vim-airline/vim-airline'
 "-----------------------------------------
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -99,8 +103,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
-""---------------------------- - -  - -  - - - -  - - 
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+
+
+"""---------------------------- - -  - -  - - - -  - - 
 Plug 'Yggdroot/indentLine'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'othree/yajs.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mattn/emmet-vim'
 call plug#end()
