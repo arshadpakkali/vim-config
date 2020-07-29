@@ -1,4 +1,34 @@
-syntax on
+" ------VIM-PLUG ---- plugins
+call plug#begin(stdpath('data') . '/plugged')
+"Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
+Plug 'ayu-theme/ayu-vim' 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"-----------------------------------------
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'sheerun/vim-polyglot'
+
+"""---------------------------- - -  - -  - - - -  - - 
+Plug 'Yggdroot/indentLine'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'othree/yajs.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mattn/emmet-vim'
+call plug#end()  "syntax on already enabled on this
+" -------------------------------------------------------------------
+"
+"
+"---------Configs 
 set relativenumber
 set smartindent 
 set incsearch
@@ -11,23 +41,21 @@ set laststatus=2
 set nu
 set encoding=UTF-8
 set wildmenu
-set colorcolumn =80
+set colorcolumn =100
 set expandtab
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 
 ""---COLORSCHEME
-if !has('gui_running')
-	set t_Co=256
-endif
+let g:airline_powerline_fonts = 1
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark = 'hard'
 set termguicolors     " enable true colors support
-autocmd vimenter * colorscheme ayu
-set background=dark   
-let ayucolor="dark"   
-"
-
-
-
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme gruvbox 
+set background=dark 
 
 " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
@@ -90,28 +118,3 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 
 
-" ------VIM-PLUG ---- plugins
-call plug#begin(stdpath('data') . '/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'ayu-theme/ayu-vim' 
-Plug 'vim-airline/vim-airline'
-"-----------------------------------------
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'mbbill/undotree'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
-
-
-"""---------------------------- - -  - -  - - - -  - - 
-Plug 'Yggdroot/indentLine'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'mattn/emmet-vim'
-call plug#end()
