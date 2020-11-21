@@ -136,9 +136,9 @@ nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
 nnoremap <S-w> :wa<CR>
 
+noremap <C-l> :noh
 noremap <C-p> :GFiles --exclude-standard --others --cached<Cr>
 noremap <leader>b :Buffers<Cr>
 noremap <leader>t :Windows<Cr>
