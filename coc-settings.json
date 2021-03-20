@@ -4,7 +4,15 @@
     "markdown",
     "javascript",
     "typescript",
-    "JSON"
+    "JSON",
+    "python"
   ],
-  "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false,
+  "python.formatting.provider": "black",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.width": 25,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "v": "open:vsplit"
+  }
 }

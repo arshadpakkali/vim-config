@@ -1,8 +1,12 @@
-" ------VIM-PLUG ---- plugins
+set nocompatible
+
+"" ------VIM-PLUG ---- plugins
 call plug#begin(stdpath('data') . '/plugged')
-"Plug 'morhetz/gruvbox'
-Plug 'gruvbox-community/gruvbox'
-Plug 'ayu-theme/ayu-vim' 
+Plug 'sheerun/vim-polyglot'
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'ayu-theme/ayu-vim' 
+Plug 'rktjmp/lush.nvim'
+Plug 'npxbr/gruvbox.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "-----------------------------------------
@@ -10,27 +14,25 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'mbbill/undotree'
+Plug 'antoinemadec/FixCursorHold.nvim'
+
+" Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/Colorizer'
 
 """---------------------------- - -  - -  - - - -  - - 
 Plug 'Yggdroot/indentLine'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
+Plug 'romainl/vim-cool'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
+
 call plug#end()  "syntax on already enabled on this
 " -------------------------------------------------------------------
 "
-"
 "---------Configs 
+
 set relativenumber
 set smartindent 
 set incsearch
@@ -47,6 +49,8 @@ set colorcolumn =100
 set expandtab
 set tabstop=2 softtabstop=2
 set shiftwidth=2
+set signcolumn=yes
+set scrolloff=5
 
 ""---COLORSCHEME
 let g:airline_powerline_fonts = 1
@@ -56,95 +60,64 @@ set termguicolors     " enable true colors support
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
 let ayucolor="dark"   " for dark version of theme
-colorscheme ayu 
+colorscheme gruvbox 
 set background=dark 
 set lazyredraw
 
-" NERDTrees File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
+let g:indentLine_char = '┊'
 
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('ts', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+" fix cursor hold plugin config
+let g:cursorhold_updatetime = 100
 
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-function! CheckIfCurrentBufferIsFile()
-  return strlen(expand('%')) > 0
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && CheckIfCurrentBufferIsFile() && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufRead * call SyncTree()
-
-function! ToggleTree()
-  if CheckIfCurrentBufferIsFile()
-    if IsNERDTreeOpen()
-      NERDTreeClose
-    else
-      NERDTreeFind
-    endif
-  else
-    NERDTree
-  endif
-endfunction
-
-" open NERDTree with ctrl + n
-nmap <C-n> :call ToggleTree()<CR>
+" open Coc-Explorer with ctrl + n
+nmap <C-n> :CocCommand explorer<CR>
 
 " ---- Coc completion
 source ~/.config/nvim/coc.vim
 
+autocmd FileType scss setl iskeyword+=@-@
+
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-""  Mappings
-:let mapleader = " "
+
+:let maplocalleader = "."
 
 inoremap jj <Esc>
+tnoremap jj <c-\><c-n>
+
+
+" copy/yank to clip board
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
+
+" Terminal open 
+" Maps ctrl-b + c to open a new tab window
+nnoremap <LocalLeader>t :tabnew +terminal<CR>
+nnoremap <LocalLeader>` :tabnext<CR>
+
+
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 
-nnoremap <leader>w :w<CR>
 nnoremap <S-w> :wa<CR>
 
-noremap <C-l> :noh
+noremap <leader>l :noh<Cr>
 noremap <C-p> :GFiles --exclude-standard --others --cached<Cr>
 noremap <leader>b :Buffers<Cr>
 noremap <leader>t :Windows<Cr>
 
-noremap <leader>f :Prettier<CR>
+noremap <leader>f :Format<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " javascript snippetsgcc
 inoremap clg console.log();<Esc>==f(a
+
+let g:user_emmet_settings = {
+      \'javascript':{
+      \'snippets':{
+      \'fn' : "(${cursor})=>{\n\t\n};",
+      \}
+      \}
+      \} 
