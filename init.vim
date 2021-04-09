@@ -27,6 +27,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'mattn/emmet-vim'
 Plug 'romainl/vim-cool'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
+Plug 'voldikss/vim-floaterm'
+
 
 call plug#end()  "syntax on already enabled on this
 " -------------------------------------------------------------------
@@ -92,10 +94,8 @@ vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 
 " Terminal open 
-" Maps ctrl-b + c to open a new tab window
-nnoremap <LocalLeader>t :tabnew +terminal<CR>
-nnoremap <LocalLeader>` :tabnext<CR>
-
+nnoremap <leader>tt :FloatermToggle<CR>
+tnoremap <leader>tt <C-\><C-n>:FloatermToggle<CR>
 
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
