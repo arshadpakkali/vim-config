@@ -80,6 +80,7 @@ autocmd FileType scss setl iskeyword+=@-@
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 :let maplocalleader = "."
+:let mapleader = " "
 
 inoremap jj <Esc>
 tnoremap jj <c-\><c-n>
@@ -100,6 +101,11 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
+nnoremap <leader>wq :wincmd q<CR>
+nnoremap <leader>wh :wincmd h<CR>
+nnoremap <leader>wj :wincmd j<CR>
+nnoremap <leader>wk :wincmd k<CR>
+nnoremap <leader>wl :wincmd l<CR>
 
 nnoremap <S-w> :wa<CR>
 
@@ -111,13 +117,7 @@ noremap <leader>t :Windows<Cr>
 noremap <leader>f :Format<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 
+
 " javascript snippetsgcc
 inoremap clg console.log();<Esc>==f(a
 
-let g:user_emmet_settings = {
-      \'javascript':{
-      \'snippets':{
-      \'fn' : "(${cursor})=>{\n\t\n};",
-      \}
-      \}
-      \} 
