@@ -106,6 +106,7 @@ nnoremap <leader>wh :wincmd h<CR>
 nnoremap <leader>wj :wincmd j<CR>
 nnoremap <leader>wk :wincmd k<CR>
 nnoremap <leader>wl :wincmd l<CR>
+nnoremap <leader>ww :wincmd w<CR>
 
 nnoremap <S-w> :wa<CR>
 
