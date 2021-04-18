@@ -96,6 +96,9 @@ nnoremap <leader>Y gg"+yG
 " Terminal open 
 nnoremap <leader>tt :FloatermToggle<CR>
 tnoremap <leader>tt <C-\><C-n>:FloatermToggle<CR>
+tnoremap <leader>tn <C-\><C-n>:FloatermNew<CR>
+tnoremap <leader>tk <C-\><C-n>:FloatermNext<CR>
+tnoremap <leader>tj <C-\><C-n>:FloatermPrev<CR>
 
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
