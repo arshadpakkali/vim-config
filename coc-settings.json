@@ -13,4 +13,5 @@
       "filetypes": ["vim", "markdown"]
     }
   },
+  "tslint.autoFixOnSave": true,
 }

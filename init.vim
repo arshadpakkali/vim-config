@@ -1,3 +1,4 @@
+:let mapleader = " "
 set nocompatible
 
 "" ------VIM-PLUG ---- plugins
@@ -82,7 +83,6 @@ autocmd FileType scss setl iskeyword+=@-@
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 :let maplocalleader = "."
-:let mapleader = " "
 
 inoremap jj <Esc>
 tnoremap jj <c-\><c-n>
@@ -104,16 +104,10 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-nnoremap <leader>wq :wincmd q<CR>
-nnoremap <leader>wh :wincmd h<CR>
-nnoremap <leader>wj :wincmd j<CR>
-nnoremap <leader>wk :wincmd k<CR>
-nnoremap <leader>wl :wincmd l<CR>
-nnoremap <leader>ww :wincmd w<CR>
+nnoremap <leader>w <C-w>
 
 nnoremap <S-w> :wa<CR>
 
-noremap <leader>l :noh<Cr>
 noremap <C-p> :GFiles --exclude-standard --others --cached<Cr>
 noremap <leader>b :Buffers<Cr>
 noremap <leader>t :Windows<Cr>
