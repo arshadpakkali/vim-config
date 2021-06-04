@@ -14,4 +14,6 @@
     }
   },
   "tslint.autoFixOnSave": true,
+  "tsserver.maxTsServerMemory": 3000,
+  "tsserver.log": "terse"
 }

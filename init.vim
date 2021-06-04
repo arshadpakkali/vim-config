@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'unblevable/quick-scope'       
 
 " Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
@@ -29,7 +30,7 @@ Plug 'mattn/emmet-vim'
 Plug 'romainl/vim-cool'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
 Plug 'voldikss/vim-floaterm'
-
+Plug 'liuchengxu/vista.vim'
 
 call plug#end()  "syntax on already enabled on this
 " -------------------------------------------------------------------
@@ -67,6 +68,13 @@ colorscheme gruvbox
 set background=dark 
 set lazyredraw
 
+"-- FOLDING --  
+set foldmethod=syntax "syntax highlighting items specify folds  
+set foldcolumn=1 "defines 1 col at window left, to indicate folding  
+let javaScript_fold=1 "activate folding by JS syntax  
+set foldlevelstart=99 "start file with all folds opened
+
+
 let g:indentLine_char = '┊'
 
 " fix cursor hold plugin config
@@ -82,7 +90,7 @@ autocmd FileType scss setl iskeyword+=@-@
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-:let maplocalleader = "."
+" :let maplocalleader = "."
 
 inoremap jj <Esc>
 tnoremap jj <c-\><c-n>
@@ -94,11 +102,31 @@ vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 
 " Terminal open 
+" hi Floaterm guibg=black
+" Set floating window border line color to cyan, and background to orange
+hi FloatermBorder guifg=cyan
+let g:floaterm_height=0.9
+let g:floaterm_width=0.9
+
+" open files on normal window
+function s:open_in_normal_window() abort
+  let f = findfile(expand('<cfile>'))
+  if !empty(f) && has_key(nvim_win_get_config(win_getid()), 'anchor')
+    FloatermHide
+    execute 'e ' . f
+  endif
+endfunction
+
+autocmd FileType floaterm nnoremap <silent><buffer> gf :call <SID>open_in_normal_window()<CR>
+autocmd FileType floaterm nnoremap <silent><buffer> gF :call <SID>open_in_normal_window()<CR>
+
 nnoremap <leader>tt :FloatermToggle<CR>
 tnoremap <leader>tt <C-\><C-n>:FloatermToggle<CR>
 tnoremap <leader>tn <C-\><C-n>:FloatermNew<CR>
 tnoremap <leader>tk <C-\><C-n>:FloatermNext<CR>
 tnoremap <leader>tj <C-\><C-n>:FloatermPrev<CR>
+
+
 
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
@@ -114,6 +142,11 @@ noremap <leader>t :Windows<Cr>
 
 noremap <leader>f :Format<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
+
+
+nnoremap <leader>cl :Vista!!<CR>
+nnoremap <leader>cL :Vista coc<CR>
+
 
 
 " javascript snippetsgcc
