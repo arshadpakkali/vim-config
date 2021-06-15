@@ -23,6 +23,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'chrisbra/Colorizer'
+Plug 'honza/vim-snippets'
 
 """---------------------------- - -  - -  - - - -  - - 
 Plug 'Yggdroot/indentLine'
@@ -49,7 +50,7 @@ set laststatus=2
 set nu
 set encoding=UTF-8
 set wildmenu
-set colorcolumn =100
+set colorcolumn =80
 set expandtab
 set tabstop=2 softtabstop=2
 set shiftwidth=2
